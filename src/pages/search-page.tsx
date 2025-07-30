@@ -1,6 +1,10 @@
+import Header from "../components/common/header";
+
 function SearchPage() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen"></div>
+    <div className="flex flex-col items-base justify-baseline h-screen">
+      <Header />
+    </div>
   );
 }
 

@@ -1,1 +1,21 @@
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #4880ee;
+  --color-red: #e84118;
+  --color-gray: #dadada;
+  --color-white: #ffffff;
+  --color-black: #222222;
+  --color-lightgray: #f2f4f6;
+  --color-textPrimary: #353c49;
+  --color-textSecondary: #6d7582;
+  --color-textSubtitle: #8d94a0;
+
+  --font-title1: 24px;
+  --font-title2: 22px;
+  --font-title3: 18px;
+  --font-body1: 20px;
+  --font-body2: 14px;
+  --font-caption: 16px;
+  --font-small: 12px;
+}
