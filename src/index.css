@@ -11,11 +11,13 @@
   --color-textSecondary: #6d7582;
   --color-textSubtitle: #8d94a0;
 
-  --font-title1: 24px;
-  --font-title2: 22px;
-  --font-title3: 18px;
-  --font-body1: 20px;
-  --font-body2: 14px;
-  --font-caption: 16px;
-  --font-small: 12px;
+  --text-title1: 24px;
+  --text-title2: 22px;
+  --text-title3: 18px;
+  --text-body1: 20px;
+  --text-body2: 14px;
+  --text-caption: 16px;
+  --text-small: 12px;
+
+  --font-display: "Noto Sans KR", sans-serif;
 }
