@@ -1,4 +1,5 @@
 import Header from "../components/common/header";
+import SearchInput from "../components/common/search-input";
 
 function SearchPage() {
   return (
@@ -10,6 +11,7 @@ function SearchPage() {
           { label: "내가 찜한 책", href: "/favorites" },
         ]}
       />
+      <SearchInput />
     </div>
   );
 }
