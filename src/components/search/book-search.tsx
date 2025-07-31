@@ -5,7 +5,7 @@ import SearchInput from "../common/search-input";
 // 도서 검색 컴포넌트
 function BookSearch() {
   const [query, setQuery] = useState("");
-  const { data, isLoading, isError } = useBookSearch(query);
+  const { data } = useBookSearch(query);
 
   console.log("queryt", query, "data", data);
 
