@@ -8,7 +8,18 @@ type HeaderProps = {
   navItems: NavItems[];
 };
 
-function Header({ logoText, navItems }: HeaderProps) {
+/**
+ *
+ * @param props - Header 컴포넌트의 props
+ * @param props.logoText - 로고 텍스트
+ * @param props.navItems - 네비게이션 아이템 배열
+ * @param props.navItems.label - 네비게이션 아이템의 라벨
+ * @param props.navItems.href - 네비게이션 아이템의 링크
+ * @returns
+ */
+function Header(props: HeaderProps) {
+  const { logoText, navItems } = props;
+
   return (
     <div className="relative flex items-center justify-between text-textPrimary ">
       <div className=" text-title1 font-bold">{logoText}</div>

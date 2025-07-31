@@ -1,5 +1,7 @@
 import book from "@/assets/book.svg";
 
+// 검색 결과가 없는 경우에 보여줄 컴포넌트
+
 function NoSearchView() {
   return (
     <div className="flex flex-col items-center justify-center ">
