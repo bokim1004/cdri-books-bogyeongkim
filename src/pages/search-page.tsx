@@ -1,9 +1,10 @@
 import Header from "../components/common/header";
-import SearchInput from "../components/common/search-input";
+import BookSearch from "../components/search/book-search";
+import NoSearchView from "../components/search/no-searchview";
 
 function SearchPage() {
   return (
-    <div className="flex flex-col items-base justify-baseline h-screen font-display">
+    <div className="flex flex-col h-screen font-display">
       <Header
         logoText="CERTICOS"
         navItems={[
@@ -11,7 +12,10 @@ function SearchPage() {
           { label: "내가 찜한 책", href: "/favorites" },
         ]}
       />
-      <SearchInput />
+      <div className=" flex flex-col justify-center mt-20 gap-30">
+        <BookSearch />
+        <NoSearchView />
+      </div>
     </div>
   );
 }
