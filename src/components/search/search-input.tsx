@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { useSearchHistory } from "../../hooks/useSearchHistory";
 import { Input } from "../common/input";
 
@@ -15,19 +15,19 @@ function SearchInput(props: Props) {
 
   console.log("searchHistory", searchHistory);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     addSearchTerm(inputValue);
     setQuery(inputValue);
-  };
+  }, [inputValue, setQuery, addSearchTerm]);
 
   return (
     <Input
       value={inputValue}
-      onChange={setInputValue}
+      onChange={(e) => setInputValue(e.target.value)}
       onSubmit={handleClick}
       placeholder="검색어를 입력하세요"
     />
   );
 }
 
-export default SearchInput;
+export default memo(SearchInput);

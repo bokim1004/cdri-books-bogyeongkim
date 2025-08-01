@@ -2,7 +2,7 @@ import searchIcon from "@/assets/searchIcon.svg";
 
 interface inputProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: (value: string) => void;
   placeholder?: string;
 }
@@ -31,7 +31,7 @@ export function Input({
       <input
         type="text"
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={onChange}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
         className="w-1/2 px-4 py-5 focus:outline-none focus:ring-0 text-textSubtitle text-caption font-medium"
