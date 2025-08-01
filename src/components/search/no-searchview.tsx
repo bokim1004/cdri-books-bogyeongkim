@@ -1,4 +1,4 @@
-import book from "@/assets/book.svg";
+import book from "@/assets/images/book.svg";
 
 // 검색 결과가 없는 경우에 보여줄 컴포넌트
 
