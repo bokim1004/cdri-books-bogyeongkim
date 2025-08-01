@@ -12,7 +12,8 @@ const fetchBooks = async (query: string) => {
         query,
       },
     });
-    return response.data.documents;
+
+    return response.data;
   } catch (error) {
     console.error("Error fetching books:", error);
   }
