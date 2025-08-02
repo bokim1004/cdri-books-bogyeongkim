@@ -1,3 +1,5 @@
+import { useState } from "react";
+import Button from "../components/common/button";
 import Header from "../components/common/header";
 import BookInfo from "../components/search/book-info";
 import BookSearch from "../components/search/book-search";
@@ -6,9 +8,9 @@ import { useSearchStore } from "../store/useSearchStore";
 
 function SearchPage() {
   const { query } = useSearchStore();
-  const { data } = useBookSearch(query);
+  const [page, setPage] = useState(0);
 
-  console.log("data", data);
+  const { data, isPlaceholderData } = useBookSearch(query, page);
 
   return (
     <div className="flex flex-col  h-screen font-display">
@@ -23,6 +25,31 @@ function SearchPage() {
         <BookSearch data={data} />
         <BookInfo data={data} />
       </div>
+      {data?.documents.length > 0 ? (
+        <div className="flex justify-center items-center p-10 gap-3">
+          {page > 0 && (
+            <Button
+              variant="simple"
+              text="이전"
+              onClick={() => setPage((old) => Math.max(old - 1, 0))}
+              disabled={page === 0}
+            />
+          )}
+          <span>현재 페이지 {page + 1}</span>
+
+          <Button
+            variant="simple"
+            text="다음"
+            onClick={() => {
+              if (!isPlaceholderData && !data?.meta?.is_end) {
+                setPage((old) => old + 1);
+              }
+            }}
+            // Disable the Next Page button until we know a next page is available
+            disabled={isPlaceholderData || data?.meta?.is_end}
+          />
+        </div>
+      ) : null}
     </div>
   );
 }

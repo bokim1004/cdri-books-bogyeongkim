@@ -1,8 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 // 도서 검색 API를 호출하는 함수
-const fetchBooks = async (query: string) => {
+const fetchBooks = async (query: string, page: number = 1) => {
   try {
     const response = await axios.get(import.meta.env.VITE_BOOK_API_URL!, {
       headers: {
@@ -10,6 +10,7 @@ const fetchBooks = async (query: string) => {
       },
       params: {
         query,
+        page,
       },
     });
 
@@ -25,10 +26,11 @@ const fetchBooks = async (query: string) => {
  * query에 따라 도서 검색 API를 호출하여 결과를 반환하는 훅
  */
 
-export const useBookSearch = (query: string) => {
+export const useBookSearch = (query: string, page: number) => {
   return useQuery({
-    queryKey: ["bookSearch", query],
-    queryFn: () => fetchBooks(query),
+    queryKey: ["bookSearch", query, page],
+    queryFn: () => fetchBooks(query, page),
     enabled: !!query,
+    placeholderData: keepPreviousData,
   });
 };
