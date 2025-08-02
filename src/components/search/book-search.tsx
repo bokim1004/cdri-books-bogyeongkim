@@ -1,21 +1,19 @@
-import { useState } from "react";
-import { useBookSearch } from "../../hooks/useBookSearch";
+import type { searchData } from "../../types/search";
 import SearchInput from "./search-input";
 
+interface BookInfoProps {
+  data: searchData;
+}
+
 // 도서 검색 컴포넌트
-function BookSearch() {
-  const [query, setQuery] = useState("");
-  const { data } = useBookSearch(query);
-
-  console.log("queryt", query, "data", data);
-
+function BookSearch({ data }: BookInfoProps) {
   return (
-    <div className="flex flex-col  items-start space-y-4 w-full max-w-xl mx-auto">
+    <div className="flex flex-col  items-start space-y-4 w-full max-w-xl ">
       <h1 className="text-title2 text-textTitle font-bold font-title2">
         도서 검색
       </h1>
       <div className="flex gap-4 w-full ">
-        <SearchInput setQuery={setQuery} />
+        <SearchInput />
         <button className=" text-textSubtitle text-body2 mt-2 font-medium p-[5px 10px] w-[72px] h-[35px] border border-textSubtitle rounded-lg">
           상세검색
         </button>

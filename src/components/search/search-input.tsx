@@ -1,16 +1,13 @@
 import closeImg from "@/assets/images/close.svg";
 import { memo, useCallback, useState } from "react";
 import { useSearchHistory } from "../../hooks/useSearchHistory";
+import { useSearchStore } from "../../store/useSearchStore";
 import { Input } from "../common/input";
 
-interface Props {
-  setQuery: (query: string) => void;
-}
-
 // 검색 입력 컴포넌트
-function SearchInput(props: Props) {
-  const { setQuery } = props;
+function SearchInput() {
   const [inputValue, setInputValue] = useState("");
+  const { setQuery } = useSearchStore();
 
   const { searchHistory, addSearchTerm, removeSearchTerm } = useSearchHistory();
 
