@@ -3,7 +3,7 @@ export interface searchData {
   meta: metaType;
 }
 
-interface documentType {
+export interface documentType {
   authors: string[];
   contents: string;
   datetime: string;

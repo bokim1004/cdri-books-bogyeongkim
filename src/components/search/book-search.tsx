@@ -8,7 +8,7 @@ interface BookInfoProps {
 // 도서 검색 컴포넌트
 function BookSearch({ data }: BookInfoProps) {
   return (
-    <div className="flex flex-col  items-start space-y-4 w-full max-w-xl ">
+    <div className="flex flex-col  items-start space-y-4 w-full max-w-xl">
       <h1 className="text-title2 text-textTitle font-bold font-title2">
         도서 검색
       </h1>
