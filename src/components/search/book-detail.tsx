@@ -8,11 +8,6 @@ function BookDetail(props: Props) {
   const { book } = props;
   return (
     <>
-      <img
-        src={book.thumbnail}
-        alt={book.title}
-        className={"w-[210px] h-[280px]"}
-      />
       <div className={`flex flex-col  my-5 w-[360px] gap-2`}>
         <div className="flex w-130 p-2 pl-6">
           <p className="font-bold text-title3 text-textPrimary">{book.title}</p>

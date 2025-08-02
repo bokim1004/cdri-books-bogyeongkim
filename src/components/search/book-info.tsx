@@ -5,6 +5,9 @@ import BookDetail from "./book-detail";
 import BookItem from "./book-item";
 import NoSearchView from "./no-searchview";
 
+import defaultHeart from "@/assets/images/defaultLove.svg";
+import redHeart from "@/assets/images/redLove.svg";
+import { useSearchStore } from "../../store/useSearchStore";
 interface BookInfoProps {
   data: searchData;
 }
@@ -20,12 +23,17 @@ function BookInfo(props: BookInfoProps) {
   const handleToggle = (id: string) => {
     setBookId((prev) => (prev === id ? "" : id));
   };
+
+  const { likedBooks, toggleLikeHeart } = useSearchStore();
+
   return (
     <div className="flex flex-col w-full mt-4  ">
       {data?.documents?.length > 0 ? (
         data?.documents?.map((book) => {
           const isOpen = bookId === book.isbn;
+          const isLiked = likedBooks[book.isbn];
 
+          console.log("isK", isLiked);
           return (
             <div
               key={book?.isbn}
@@ -33,6 +41,21 @@ function BookInfo(props: BookInfoProps) {
                 isOpen ? "items-start" : "items-center"
               }`}
             >
+              <div className="relative ">
+                <img
+                  src={book.thumbnail}
+                  alt={book.title}
+                  className={`${
+                    isOpen ? "w-[210px] h-[280px]" : "w-[48px] h-[68px]"
+                  }`}
+                />
+                <img
+                  src={isLiked ? redHeart : defaultHeart}
+                  alt="heart"
+                  className="absolute right-0 top-0.5 w-4 h-4"
+                  onClick={() => toggleLikeHeart(book.isbn)}
+                />
+              </div>
               {isOpen ? <BookDetail book={book} /> : <BookItem book={book} />}
               <div className="flex items-center pl-10 gap-3">
                 <Button
