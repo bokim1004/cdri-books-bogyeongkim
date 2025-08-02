@@ -1,12 +1,16 @@
+import arrowDownImg from "@/assets/images/arrowDown.svg";
+import arrowUpImg from "@/assets/images/arrowUp.svg";
+
 interface Props {
   text: string;
+  isOpen?: boolean;
   onClick?: () => void;
   variant?: "primary" | "secondary";
 }
 
-function Button({ text, onClick, variant = "primary" }: Props) {
+function Button({ text, isOpen, onClick, variant = "primary" }: Props) {
   const baseStyles =
-    "w-[115px] h-[48px] px-5 py-3 rounded-lg font-medium text-caption focus:outline-none";
+    "flex items-center  justify-center w-[115px] h-[48px] px-5 py-3 rounded-lg font-medium text-caption focus:outline-none";
   const primaryStyles = "bg-primary text-white ";
   const secondaryStyles = "bg-lightgray text-textSecondary ";
 
@@ -15,6 +19,13 @@ function Button({ text, onClick, variant = "primary" }: Props) {
   return (
     <button className={`${baseStyles} ${buttonStyles}`} onClick={onClick}>
       {text}
+      {variant === "secondary" ? (
+        <img
+          src={isOpen ? arrowUpImg : arrowDownImg}
+          alt="arrow"
+          className="pl-1"
+        />
+      ) : null}
     </button>
   );
 }

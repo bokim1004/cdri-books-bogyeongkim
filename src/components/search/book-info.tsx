@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { searchData } from "../../types/search";
 import Button from "../common/button";
 import NoSearchView from "./no-searchview";
@@ -9,6 +10,12 @@ interface BookInfoProps {
 function BookInfo(props: BookInfoProps) {
   const { data } = props;
   console.log("BookInfo data", data);
+
+  const [bookId, setBookId] = useState<string>("");
+
+  const handleToggle = (id: string) => {
+    setBookId((prev) => (prev === id ? "" : id));
+  };
   return (
     <div className="flex flex-col w-full mt-4  ">
       {data?.documents?.length > 0 ? (
@@ -32,8 +39,17 @@ function BookInfo(props: BookInfoProps) {
               {book.price.toLocaleString()}원
             </p>
             <div className="flex items-center pl-10 gap-3">
-              <Button variant="primary" text="구매하기" />
-              <Button variant="secondary" text="상세보기" />
+              <Button
+                variant="primary"
+                text="구매하기"
+                onClick={() => window.open(book.url, "_blank")}
+              />
+              <Button
+                variant="secondary"
+                text="상세보기"
+                isOpen={bookId === book.isbn}
+                onClick={() => handleToggle(book.isbn)}
+              />
             </div>
           </div>
         ))
