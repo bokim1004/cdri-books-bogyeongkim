@@ -1,9 +1,9 @@
 import { useState } from "react";
 import type { searchData } from "../../types/search";
 import Button from "../common/button";
+import NoSearchView from "../search/no-searchview";
 import BookDetail from "./book-detail";
 import BookItem from "./book-item";
-import NoSearchView from "./no-searchview";
 
 import defaultHeart from "@/assets/images/defaultLove.svg";
 import redHeart from "@/assets/images/redLove.svg";
@@ -16,7 +16,6 @@ interface BookInfoProps {
 
 function BookInfo(props: BookInfoProps) {
   const { data } = props;
-  console.log("BookInfo data", data);
 
   const [bookId, setBookId] = useState<string>("");
 
@@ -27,7 +26,7 @@ function BookInfo(props: BookInfoProps) {
   const { likedBooks, toggleLikeHeart } = useSearchStore();
 
   return (
-    <div className="flex flex-col w-full mt-4  ">
+    <div className="flex flex-col w-full mt-10  ">
       {data?.documents?.length > 0 ? (
         data?.documents?.map((book) => {
           const isOpen = bookId === book.isbn;

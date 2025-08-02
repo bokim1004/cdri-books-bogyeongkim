@@ -20,7 +20,6 @@ function BookDetail(props: Props) {
         </div>
       </div>
       <div className="absolute right-7 bottom-30 flex flex-col items-end gap-1">
-        {/* 원가 */}
         <div className="text-sm text-gray-500">
           원가{" "}
           <span className="line-through text-gray-500">
@@ -28,7 +27,6 @@ function BookDetail(props: Props) {
           </span>
         </div>
 
-        {/* 할인가 */}
         <div className="text-sm text-gray-500">
           할인가{" "}
           <span className="text-lg font-bold text-gray-800">

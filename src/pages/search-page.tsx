@@ -1,7 +1,7 @@
 import { useState } from "react";
+import BookInfo from "../components/book/book-info";
 import Button from "../components/common/button";
 import Header from "../components/common/header";
-import BookInfo from "../components/search/book-info";
 import BookSearch from "../components/search/book-search";
 import { useBookSearch } from "../hooks/useBookSearch";
 import { useSearchStore } from "../store/useSearchStore";
@@ -36,18 +36,18 @@ function SearchPage() {
             />
           )}
           <span>현재 페이지 {page + 1}</span>
-
-          <Button
-            variant="simple"
-            text="다음"
-            onClick={() => {
-              if (!isPlaceholderData && !data?.meta?.is_end) {
-                setPage((old) => old + 1);
-              }
-            }}
-            // Disable the Next Page button until we know a next page is available
-            disabled={isPlaceholderData || data?.meta?.is_end}
-          />
+          {data?.documents.length < 10 ? null : (
+            <Button
+              variant="simple"
+              text="다음"
+              onClick={() => {
+                if (!isPlaceholderData && !data?.meta?.is_end) {
+                  setPage((old) => old + 1);
+                }
+              }}
+              disabled={isPlaceholderData || data?.meta?.is_end}
+            />
+          )}
         </div>
       ) : null}
     </div>
