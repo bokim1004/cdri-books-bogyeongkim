@@ -4,6 +4,8 @@ interface inputProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit?: (value: string) => void;
+  onFocus?: () => void;
+  onBlur?: () => void;
   placeholder?: string;
 }
 
@@ -11,6 +13,8 @@ export function Input({
   value,
   onChange,
   onSubmit,
+  onFocus,
+  onBlur,
   placeholder = "검색어를 입력하세요",
 }: inputProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -33,6 +37,8 @@ export function Input({
         value={value}
         onChange={onChange}
         onKeyDown={handleKeyDown}
+        onFocus={onFocus}
+        onBlur={onBlur}
         placeholder={placeholder}
         className="w-1/2 px-4 py-5 focus:outline-none focus:ring-0 text-textSubtitle text-caption font-medium"
       />

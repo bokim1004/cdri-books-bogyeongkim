@@ -33,7 +33,6 @@ function BookInfo(props: BookInfoProps) {
           const isOpen = bookId === book.isbn;
           const isLiked = likedBooks[book.isbn];
 
-          console.log("isK", isLiked);
           return (
             <div
               key={book?.isbn}
@@ -52,7 +51,9 @@ function BookInfo(props: BookInfoProps) {
                 <img
                   src={isLiked ? redHeart : defaultHeart}
                   alt="heart"
-                  className="absolute right-0 top-0.5 w-4 h-4"
+                  className={`absolute right-0 top-0.5 ${
+                    isOpen ? "w-6 h-6" : "w-4 h-4"
+                  }`}
                   onClick={() => toggleLikeHeart(book.isbn)}
                 />
               </div>

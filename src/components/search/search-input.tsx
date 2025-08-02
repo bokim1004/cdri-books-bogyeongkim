@@ -7,14 +7,20 @@ import { Input } from "../common/input";
 // 검색 입력 컴포넌트
 function SearchInput() {
   const [inputValue, setInputValue] = useState("");
-  const { setQuery } = useSearchStore();
+  const [isFocused, setIsFocused] = useState(false);
 
+  const { setQuery } = useSearchStore();
   const { searchHistory, addSearchTerm, removeSearchTerm } = useSearchHistory();
 
   const handleClick = useCallback(() => {
     addSearchTerm(inputValue);
     setQuery(inputValue);
   }, [inputValue, setQuery, addSearchTerm]);
+
+  const handleHistoryClick = (term: string) => {
+    setInputValue(term);
+    setQuery(term);
+  };
 
   const handleDeleteClick = (term: string) => {
     removeSearchTerm(term);
@@ -26,14 +32,19 @@ function SearchInput() {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onSubmit={handleClick}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         placeholder="검색어를 입력하세요"
       />
       {/* 검색 기록이 있는 경우 */}
-      {searchHistory.length > 0 ? (
-        <div className=" flex flex-col  w-full  ">
-          {searchHistory.map((term, index) => {
+      {isFocused ? (
+        <div className=" flex flex-col  w-full ">
+          {searchHistory?.map((term, index) => {
             return (
-              <div className="flex flex-row items-center justify-between ">
+              <div
+                className="flex flex-row items-center justify-between cursor-pointer hover:bg-gray-200 "
+                onMouseDown={() => handleHistoryClick(term)}
+              >
                 <div
                   key={index}
                   className="flex justify-baseline items-start pl-14 pt-3
@@ -45,7 +56,10 @@ function SearchInput() {
                   src={closeImg}
                   alt="Close Icon"
                   className="w-6 h-6 mr-10 cursor-pointer"
-                  onClick={() => handleDeleteClick(term)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteClick(term);
+                  }}
                 />
               </div>
             );

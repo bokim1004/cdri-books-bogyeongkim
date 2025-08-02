@@ -8,6 +8,8 @@ function SearchPage() {
   const { query } = useSearchStore();
   const { data } = useBookSearch(query);
 
+  console.log("data", data);
+
   return (
     <div className="flex flex-col  h-screen font-display">
       <Header
