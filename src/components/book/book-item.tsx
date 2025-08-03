@@ -15,7 +15,7 @@ function BookItem(Props: Props) {
         <p className="font-bold text-title3 text-textPrimary">{book.title}</p>
         <p className="pl-3 text-textSecondary">{book.authors}</p>
       </div>
-      <p className=" flex w-[80px] items-center text-title3 text-textPrimary font-bold">
+      <p className=" flex w-[100px] items-center text-title3 text-textPrimary font-bold">
         {book.price.toLocaleString()}원
       </p>
     </>

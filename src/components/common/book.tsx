@@ -20,7 +20,6 @@ interface BookProps {
 function Book(props: BookProps) {
   const { book, isOpen, isLiked, onToggleLike, onToggleOpen } = props;
 
-  console.log("DDD", isLiked);
   return (
     <div
       key={book?.isbn}
