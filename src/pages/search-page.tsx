@@ -7,7 +7,7 @@ import { useBookSearch } from "../hooks/useBookSearch";
 import { useSearchStore } from "../store/useSearchStore";
 
 function SearchPage() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
 
   const { query } = useSearchStore();
   const { data, isPlaceholderData } = useBookSearch(query, page);
@@ -20,7 +20,7 @@ function SearchPage() {
       </div>
       {data?.documents.length > 0 ? (
         <div className="flex justify-center items-center p-10 gap-3">
-          {page > 0 && (
+          {page > 1 && (
             <Button
               variant="simple"
               text="이전"
@@ -28,7 +28,7 @@ function SearchPage() {
               disabled={page === 0}
             />
           )}
-          <span>현재 페이지 {page + 1}</span>
+          <span>현재 페이지 {page}</span>
           {data?.documents.length < 10 ? null : (
             <Button
               variant="simple"

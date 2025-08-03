@@ -2,7 +2,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 // 도서 검색 API를 호출하는 함수
-const fetchBooks = async (query: string, page: number = 1) => {
+const fetchBooks = async (query: string, page: number) => {
   try {
     const response = await axios.get(import.meta.env.VITE_BOOK_API_URL!, {
       headers: {
