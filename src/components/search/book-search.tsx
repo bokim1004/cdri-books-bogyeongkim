@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSearchHistory } from "../../hooks/useSearchHistory";
+import { useSearchHistoryStore } from "../../store/useSearchHistoryStore";
 import { useSearchStore } from "../../store/useSearchStore";
 import type { searchData } from "../../types/search";
 import Modal from "../common/modal";
@@ -15,11 +15,11 @@ function BookSearch({ data }: BookInfoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>("");
   const { setQuery } = useSearchStore();
-  const { addSearchTerm } = useSearchHistory();
+  const { addSearchHistory } = useSearchHistoryStore();
 
   const handleSearch = () => {
     setQuery(inputValue);
-    addSearchTerm(inputValue);
+    addSearchHistory(inputValue);
     setIsOpen(false);
   };
 

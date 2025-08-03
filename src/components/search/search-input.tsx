@@ -1,6 +1,6 @@
 import closeImg from "@/assets/images/close.svg";
 import { memo, useCallback, useState } from "react";
-import { useSearchHistory } from "../../hooks/useSearchHistory";
+import { useSearchHistoryStore } from "../../store/useSearchHistoryStore";
 import { useSearchStore } from "../../store/useSearchStore";
 import { Input } from "../common/input";
 
@@ -10,12 +10,14 @@ function SearchInput() {
   const [isFocused, setIsFocused] = useState(false);
 
   const { setQuery } = useSearchStore();
-  const { searchHistory, addSearchTerm, removeSearchTerm } = useSearchHistory();
+
+  const { addSearchHistory, removeSearchHistory, searchHistory } =
+    useSearchHistoryStore();
 
   const handleClick = useCallback(() => {
-    addSearchTerm(inputValue);
+    addSearchHistory(inputValue);
     setQuery(inputValue);
-  }, [inputValue, setQuery, addSearchTerm]);
+  }, [inputValue, setQuery, addSearchHistory]);
 
   const handleHistoryClick = (term: string) => {
     setInputValue(term);
@@ -23,7 +25,8 @@ function SearchInput() {
   };
 
   const handleDeleteClick = (term: string) => {
-    removeSearchTerm(term);
+    removeSearchHistory(term);
+    setInputValue("");
   };
 
   return (
@@ -55,8 +58,8 @@ function SearchInput() {
                 <img
                   src={closeImg}
                   alt="Close Icon"
-                  className="w-6 h-6 mr-10 cursor-pointer"
-                  onClick={(e) => {
+                  className="w-6 h-6 mr-10 cursor-pointer "
+                  onMouseDown={(e) => {
                     e.stopPropagation();
                     handleDeleteClick(term);
                   }}

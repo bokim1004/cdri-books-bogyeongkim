@@ -11,6 +11,8 @@ interface SearchHistoryState {
 const STORAGE_KEY = "searchHistory";
 const MAX_HISTORY = 8;
 
+/** 검색 기록 상태 저장소  */
+
 export const useSearchHistoryStore = create<SearchHistoryState>()(
   persist(
     (set) => ({
