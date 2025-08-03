@@ -14,6 +14,7 @@ interface BookInfoProps {
 function BookSearch({ data }: BookInfoProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>("");
+
   const { setQuery } = useSearchStore();
   const { addSearchHistory } = useSearchHistoryStore();
 

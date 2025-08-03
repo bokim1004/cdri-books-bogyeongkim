@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useSearchStore } from "../store/useSearchStore";
+import { useFavoriteStore } from "../store/useFavoriteStore";
 import type { documentType } from "../types/search";
 
 export const useBookToggle = () => {
@@ -11,7 +11,7 @@ export const useBookToggle = () => {
   }, []);
 
   // 좋아요(하트) 토글
-  const { likedBooks, toggleLikeHeart } = useSearchStore();
+  const { likedBooks, toggleLikeHeart } = useFavoriteStore();
   const handleToggleLike = useCallback(
     (book: documentType) => toggleLikeHeart(book),
     [toggleLikeHeart]

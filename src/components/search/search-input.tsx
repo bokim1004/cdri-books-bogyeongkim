@@ -17,6 +17,7 @@ function SearchInput() {
   const handleClick = useCallback(() => {
     addSearchHistory(inputValue);
     setQuery(inputValue);
+    setIsFocused(false);
   }, [inputValue, setQuery, addSearchHistory]);
 
   const handleHistoryClick = (term: string) => {

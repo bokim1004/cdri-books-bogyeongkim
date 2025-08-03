@@ -1,4 +1,9 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  BrowserRouter as Router,
+  Routes,
+} from "react-router-dom";
 import "./App.css";
 import Header from "./components/common/header";
 import FavoritePage from "./pages/favorite-page";
@@ -15,6 +20,7 @@ function App() {
         ]}
       />
       <Routes>
+        <Route path="/" element={<Navigate to="/search" replace />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/liked" element={<FavoritePage />} />
       </Routes>
