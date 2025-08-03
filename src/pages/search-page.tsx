@@ -1,8 +1,8 @@
 import { useState } from "react";
 import BookInfo from "../components/book/book-info";
-import Button from "../components/common/button";
 import BookSearch from "../components/search/book-search";
 
+import Pagination from "../components/common/pagination";
 import { useBookSearch } from "../hooks/useBookSearch";
 import { useSearchStore } from "../store/useSearchStore";
 
@@ -10,38 +10,24 @@ function SearchPage() {
   const [page, setPage] = useState(1);
 
   const { query } = useSearchStore();
-  const { data, isPlaceholderData } = useBookSearch(query, page);
+  const { data } = useBookSearch(query, page);
+
+  const hasNext = !data?.meta?.is_end && (data?.documents?.length ?? 0) >= 10;
 
   return (
-    <div className="flex flex-col  h-screen font-display">
+    <div className="flex flex-col  h-screen font-display mx-44">
       <div className=" flex flex-col  mt-20 mx-auto  ">
         <BookSearch data={data} />
         <BookInfo data={data} />
       </div>
       {data?.documents.length > 0 ? (
-        <div className="flex justify-center items-center p-10 gap-3">
-          {page > 1 && (
-            <Button
-              variant="simple"
-              text="이전"
-              onClick={() => setPage((old) => Math.max(old - 1, 0))}
-              disabled={page === 0}
-            />
-          )}
-          <span>현재 페이지 {page}</span>
-          {data?.documents.length < 10 ? null : (
-            <Button
-              variant="simple"
-              text="다음"
-              onClick={() => {
-                if (!isPlaceholderData && !data?.meta?.is_end) {
-                  setPage((old) => old + 1);
-                }
-              }}
-              disabled={isPlaceholderData || data?.meta?.is_end}
-            />
-          )}
-        </div>
+        <Pagination
+          page={page}
+          onPrev={() => setPage((old) => Math.max(old - 1, 1))}
+          onNext={() => setPage((old) => old + 1)}
+          hasPrev={page > 1}
+          hasNext={hasNext}
+        />
       ) : null}
     </div>
   );
