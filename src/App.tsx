@@ -6,8 +6,10 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import Header from "./components/common/header";
-import FavoritePage from "./pages/favorite-page";
-import SearchPage from "./pages/search-page";
+
+import { lazy, Suspense } from "react";
+const SearchPage = lazy(() => import("./pages/search-page"));
+const FavoritePage = lazy(() => import("./pages/favorite-page"));
 
 function App() {
   return (
@@ -19,11 +21,13 @@ function App() {
           { label: "내가 찜한 책", href: "/liked" },
         ]}
       />
-      <Routes>
-        <Route path="/" element={<Navigate to="/search" replace />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/liked" element={<FavoritePage />} />
-      </Routes>
+      <Suspense fallback={<div>로딩중...</div>}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/search" replace />} />
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/liked" element={<FavoritePage />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }
