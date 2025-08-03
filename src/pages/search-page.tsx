@@ -16,7 +16,7 @@ function SearchPage() {
 
   return (
     <div className="flex flex-col  h-screen font-display mx-44">
-      <div className=" flex flex-col  mt-20 mx-auto  ">
+      <div className=" flex flex-col  mt-20">
         <BookSearch data={data} />
         <BookInfo data={data} />
       </div>

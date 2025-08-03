@@ -21,11 +21,14 @@ export const useSearchHistoryStore = create<SearchHistoryState>()(
       //검색어 기록 추가
       addSearchHistory: (term) =>
         set((state) => {
+          const trimmed = term.trim();
+          if (!trimmed) return state;
+          console.log("term", term, state);
           const filteredHistory = state.searchHistory.filter(
-            (item) => item !== term
+            (item) => item !== trimmed
           );
           return {
-            searchHistory: [term, ...filteredHistory].slice(0, MAX_HISTORY),
+            searchHistory: [trimmed, ...filteredHistory].slice(0, MAX_HISTORY),
           };
         }),
       //검색어 기록 삭제

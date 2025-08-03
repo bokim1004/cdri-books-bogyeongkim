@@ -14,7 +14,7 @@ function BookInfo(props: BookInfoProps) {
   const { bookId, likedBooks, handleToggleLike, handleToggleOpen } =
     useBookToggle();
   return (
-    <div className="flex flex-col w-full mt-10  ">
+    <div className="flex flex-col w-full mt-10 ">
       {data?.documents?.length > 0 ? (
         data?.documents?.map((book) => {
           const isOpen = bookId === book.isbn;

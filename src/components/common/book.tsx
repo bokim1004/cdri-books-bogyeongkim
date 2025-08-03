@@ -23,7 +23,7 @@ function Book(props: BookProps) {
   return (
     <div
       key={book?.isbn}
-      className={`relative flex w-full max-w-[962px] border-b  p-4 border-gray-200 py-4 ${
+      className={`relative flex w-full max-w-[962px] border-b  border-gray-200 py-4 ${
         isOpen ? "items-start" : "items-center"
       }`}
     >
