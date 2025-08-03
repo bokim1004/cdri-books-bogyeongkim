@@ -1,4 +1,6 @@
+import { useState } from "react";
 import Book from "../components/common/book";
+import Pagination from "../components/common/pagination";
 import { useBookToggle } from "../hooks/useBookToggle";
 
 function FavoritePage() {
@@ -7,6 +9,13 @@ function FavoritePage() {
 
   const count = Object.keys(likedBooks).length;
   const likedBookList = Object.values(likedBooks);
+
+  const [page, setPage] = useState(1);
+  const ITEMS_ONE_PAGE = 10;
+  const totalPageNumber = Math.ceil(likedBookList.length / ITEMS_ONE_PAGE);
+  const startIndex = (page - 1) * ITEMS_ONE_PAGE;
+  const endIndex = startIndex + ITEMS_ONE_PAGE;
+  const currentBookList = likedBookList.slice(startIndex, endIndex);
 
   return (
     <div className="flex flex-col  h-screen font-display  pt-20 items-start mx-44">
@@ -19,7 +28,7 @@ function FavoritePage() {
           </p>
         </div>
       </div>
-      {likedBookList?.map((book) => {
+      {currentBookList?.map((book) => {
         const isOpen = bookId === book.isbn;
         const likedBookList = likedBooks[book.isbn];
 
@@ -33,6 +42,13 @@ function FavoritePage() {
           />
         );
       })}
+      <Pagination
+        page={page}
+        onPrev={() => setPage((prev) => Math.max(prev - 1, 1))}
+        onNext={() => setPage((prev) => prev + 1)}
+        hasPrev={page > 1}
+        hasNext={page < totalPageNumber}
+      />
     </div>
   );
 }

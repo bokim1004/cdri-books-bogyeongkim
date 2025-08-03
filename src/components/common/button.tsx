@@ -19,7 +19,7 @@ function Button({
   disabled,
 }: Props) {
   const baseStyles =
-    "flex items-center  justify-center w-[115px] h-[48px] px-5 py-3 rounded-lg font-medium text-caption focus:outline-none transform active:scale-95 transition";
+    "flex items-center justify-center w-[115px] h-[48px] px-5 py-3 rounded-lg font-medium text-caption focus:outline-none transform active:scale-95 transition";
   const primaryStyles = "bg-primary text-white ";
   const secondaryStyles = "bg-lightgray text-textSecondary ";
   const simpleStyles = "bg-white text-textSecondary border-1 ";

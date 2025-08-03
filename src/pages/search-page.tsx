@@ -23,8 +23,8 @@ function SearchPage() {
       {data?.documents.length > 0 ? (
         <Pagination
           page={page}
-          onPrev={() => setPage((old) => Math.max(old - 1, 1))}
-          onNext={() => setPage((old) => old + 1)}
+          onPrev={() => setPage((prev) => Math.max(prev - 1, 1))}
+          onNext={() => setPage((prev) => prev + 1)}
           hasPrev={page > 1}
           hasNext={hasNext}
         />
