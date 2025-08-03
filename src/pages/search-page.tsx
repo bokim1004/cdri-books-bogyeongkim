@@ -1,26 +1,19 @@
 import { useState } from "react";
 import BookInfo from "../components/book/book-info";
 import Button from "../components/common/button";
-import Header from "../components/common/header";
 import BookSearch from "../components/search/book-search";
+
 import { useBookSearch } from "../hooks/useBookSearch";
 import { useSearchStore } from "../store/useSearchStore";
 
 function SearchPage() {
-  const { query } = useSearchStore();
   const [page, setPage] = useState(0);
 
+  const { query } = useSearchStore();
   const { data, isPlaceholderData } = useBookSearch(query, page);
 
   return (
     <div className="flex flex-col  h-screen font-display">
-      <Header
-        logoText="CERTICOS BOOKS"
-        navItems={[
-          { label: "도서 검색", href: "/search" },
-          { label: "내가 찜한 책", href: "/favorites" },
-        ]}
-      />
       <div className=" flex flex-col  mt-20 mx-auto  ">
         <BookSearch data={data} />
         <BookInfo data={data} />
