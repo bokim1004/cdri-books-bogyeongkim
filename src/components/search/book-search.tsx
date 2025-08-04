@@ -19,7 +19,6 @@ function BookSearch({ data }: BookInfoProps) {
     detailInputValue,
     setDetailInputValue,
     setInputValue,
-    inputValue,
   } = useSearchStore();
   const { addSearchHistory } = useSearchHistoryStore();
 
@@ -35,8 +34,6 @@ function BookSearch({ data }: BookInfoProps) {
     setIsModalOpen,
     setInputValue,
   ]);
-
-  console.log("inputValue", inputValue);
 
   return (
     <>

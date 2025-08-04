@@ -23,7 +23,7 @@ export const useSearchHistoryStore = create<SearchHistoryState>()(
         set((state) => {
           const trimmed = term.trim();
           if (!trimmed) return state;
-          console.log("term", term, state);
+
           const filteredHistory = state.searchHistory.filter(
             (item) => item !== trimmed
           );
