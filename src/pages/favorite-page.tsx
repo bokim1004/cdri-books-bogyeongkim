@@ -1,7 +1,7 @@
-import { useState } from "react";
 import Book from "../components/common/book";
 import Pagination from "../components/common/pagination";
 import { useBookToggle } from "../hooks/useBookToggle";
+import { usePagination } from "../hooks/usePagination";
 
 function FavoritePage() {
   const { bookId, likedBooks, handleToggleLike, handleToggleOpen } =
@@ -10,13 +10,12 @@ function FavoritePage() {
   const count = Object.keys(likedBooks).length;
   const likedBookList = Object.values(likedBooks);
 
-  const [page, setPage] = useState(1);
-  const ITEMS_ONE_PAGE = 10;
-  const totalPageNumber = Math.ceil(likedBookList.length / ITEMS_ONE_PAGE);
-  const startIndex = (page - 1) * ITEMS_ONE_PAGE;
-  const endIndex = startIndex + ITEMS_ONE_PAGE;
-  const currentBookList = likedBookList.slice(startIndex, endIndex);
+  const ITEMS_PER_PAGE = 10;
 
+  const { page, setPage, totalPageNumber, currentBookList } = usePagination(
+    likedBookList,
+    ITEMS_PER_PAGE
+  );
   return (
     <div className="flex flex-col  h-screen font-display  pt-20 items-start mx-44">
       <div className="flex flex-col items-start gap-2">
