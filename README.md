@@ -70,7 +70,7 @@ https://cdri-books-bogyeongkim.vercel.app/
 - `search`폴더에는 검색관련 컴포넌트를 세분화했습니다.
 - `hooks`폴더에는 api호출,비즈니스 로직을 관심사별로 구분한 hook들을 넣었습니다.
 - `store`폴더에는 전역상태 관리를 위한 store를 관심사별로 구분해두었습니다.
-- 
+  
 ## 기술 스택
 React.js, TypeScript, React Query, Tailwind CSS, Zustand
 
