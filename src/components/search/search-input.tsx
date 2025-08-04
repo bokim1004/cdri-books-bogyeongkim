@@ -6,10 +6,10 @@ import { Input } from "../common/input";
 
 // 검색 입력 컴포넌트
 function SearchInput() {
-  const [inputValue, setInputValue] = useState("");
   const [isFocused, setIsFocused] = useState(false);
 
-  const { setQuery } = useSearchStore();
+  const { setQuery, inputValue, setInputValue, setDetailInputValue } =
+    useSearchStore();
 
   const { addSearchHistory, removeSearchHistory, searchHistory } =
     useSearchHistoryStore();
@@ -17,8 +17,10 @@ function SearchInput() {
   const handleClick = useCallback(() => {
     addSearchHistory(inputValue);
     setQuery(inputValue);
+
     setIsFocused(false);
-  }, [inputValue, setQuery, addSearchHistory]);
+    setDetailInputValue("");
+  }, [inputValue, setQuery, addSearchHistory, setDetailInputValue]);
 
   const handleHistoryClick = (term: string) => {
     setInputValue(term);

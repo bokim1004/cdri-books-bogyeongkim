@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback } from "react";
 import { useSearchHistoryStore } from "../../store/useSearchHistoryStore";
 import { useSearchStore } from "../../store/useSearchStore";
 import type { searchData } from "../../types/search";
@@ -12,16 +12,31 @@ interface BookInfoProps {
 
 // 도서 검색 컴포넌트
 function BookSearch({ data }: BookInfoProps) {
-  const [inputValue, setInputValue] = useState<string>("");
-
-  const { setQuery, isModalOpen, setIsModalOpen } = useSearchStore();
+  const {
+    setQuery,
+    isModalOpen,
+    setIsModalOpen,
+    detailInputValue,
+    setDetailInputValue,
+    setInputValue,
+    inputValue,
+  } = useSearchStore();
   const { addSearchHistory } = useSearchHistoryStore();
 
-  const handleSearch = () => {
-    setQuery(inputValue);
-    addSearchHistory(inputValue);
+  const handleSearch = useCallback(() => {
+    setQuery(detailInputValue);
+    addSearchHistory(detailInputValue);
     setIsModalOpen(false);
-  };
+    setInputValue("");
+  }, [
+    detailInputValue,
+    setQuery,
+    addSearchHistory,
+    setIsModalOpen,
+    setInputValue,
+  ]);
+
+  console.log("inputValue", inputValue);
 
   return (
     <>
@@ -34,7 +49,10 @@ function BookSearch({ data }: BookInfoProps) {
             <SearchInput />
             <button
               className="text-textSubtitle text-body2 mt-2 font-medium p-[5px 10px] w-[72px] h-[35px] border border-textSubtitle rounded-lg"
-              onClick={() => setIsModalOpen(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsModalOpen(true);
+              }}
             >
               상세검색
             </button>
@@ -48,8 +66,8 @@ function BookSearch({ data }: BookInfoProps) {
                 onSearch={handleSearch}
               >
                 <SearchForm
-                  inputValue={inputValue}
-                  setInputValue={setInputValue}
+                  inputValue={detailInputValue}
+                  setInputValue={setDetailInputValue}
                 />
               </Modal>
             </div>
