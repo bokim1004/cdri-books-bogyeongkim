@@ -16,6 +16,7 @@ function FavoritePage() {
     likedBookList,
     ITEMS_PER_PAGE
   );
+
   return (
     <div className="flex flex-col  h-screen font-display  pt-20 items-start mx-44">
       <div className="flex flex-col items-start gap-2">
@@ -41,13 +42,16 @@ function FavoritePage() {
           />
         );
       })}
-      <Pagination
-        page={page}
-        onPrev={() => setPage((prev) => Math.max(prev - 1, 1))}
-        onNext={() => setPage((prev) => prev + 1)}
-        hasPrev={page > 1}
-        hasNext={page < totalPageNumber}
-      />
+
+      {likedBookList.length > 0 ? (
+        <Pagination
+          page={page}
+          onPrev={() => setPage((prev) => Math.max(prev - 1, 1))}
+          onNext={() => setPage((prev) => prev + 1)}
+          hasPrev={page > 1}
+          hasNext={page < totalPageNumber}
+        />
+      ) : null}
     </div>
   );
 }
