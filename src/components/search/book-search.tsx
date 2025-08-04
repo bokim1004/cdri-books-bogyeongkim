@@ -12,16 +12,15 @@ interface BookInfoProps {
 
 // 도서 검색 컴포넌트
 function BookSearch({ data }: BookInfoProps) {
-  const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState<string>("");
 
-  const { setQuery } = useSearchStore();
+  const { setQuery, isModalOpen, setIsModalOpen } = useSearchStore();
   const { addSearchHistory } = useSearchHistoryStore();
 
   const handleSearch = () => {
     setQuery(inputValue);
     addSearchHistory(inputValue);
-    setIsOpen(false);
+    setIsModalOpen(false);
   };
 
   return (
@@ -35,17 +34,17 @@ function BookSearch({ data }: BookInfoProps) {
             <SearchInput />
             <button
               className="text-textSubtitle text-body2 mt-2 font-medium p-[5px 10px] w-[72px] h-[35px] border border-textSubtitle rounded-lg"
-              onClick={() => setIsOpen(true)}
+              onClick={() => setIsModalOpen(true)}
             >
               상세검색
             </button>
           </div>
-          {isOpen && (
-            <div className="absolute -right-30 z-10">
+          {isModalOpen && (
+            <div className="absolute -right-40 z-10 ">
               <Modal
-                isOpen={isOpen}
+                isOpen={isModalOpen}
                 btnText={"검색하기"}
-                onClose={() => setIsOpen(false)}
+                onClose={() => setIsModalOpen(false)}
                 onSearch={handleSearch}
               >
                 <SearchForm

@@ -9,14 +9,17 @@ import { useSearchStore } from "../store/useSearchStore";
 function SearchPage() {
   const [page, setPage] = useState(1);
 
-  const { query } = useSearchStore();
+  const { query, setIsModalOpen, isModalOpen } = useSearchStore();
   const { data } = useBookSearch(query, page);
 
   const hasNext = !data?.meta?.is_end && (data?.documents?.length ?? 0) >= 10;
 
   return (
     <div className="flex flex-col  h-screen font-display mx-44">
-      <div className=" flex flex-col  mt-20">
+      <div
+        className=" flex flex-col  mt-20"
+        onClick={() => setIsModalOpen(!isModalOpen)}
+      >
         <BookSearch data={data} />
         <BookInfo data={data} />
       </div>
