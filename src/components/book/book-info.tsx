@@ -9,7 +9,7 @@ interface BookInfoProps {
 
 /** 도서 검색 결과 리스트 */
 
-function BookInfo(props: BookInfoProps) {
+function BookInfoList(props: BookInfoProps) {
   const { data } = props;
   const { bookId, likedBooks, handleToggleLike, handleToggleOpen } =
     useBookToggle();
@@ -17,13 +17,13 @@ function BookInfo(props: BookInfoProps) {
     <div className="flex flex-col w-full mt-10 ">
       {data?.documents?.length > 0 ? (
         data?.documents?.map((book) => {
-          const isOpen = bookId === book.isbn;
+          const isDetailOpen = bookId === book.isbn;
           const likedBookList = likedBooks[book.isbn];
 
           return (
             <Book
               book={book}
-              isOpen={isOpen}
+              isDetailOpen={isDetailOpen}
               isLiked={likedBookList}
               onToggleLike={handleToggleLike}
               onToggleOpen={handleToggleOpen}
@@ -37,4 +37,4 @@ function BookInfo(props: BookInfoProps) {
   );
 }
 
-export default BookInfo;
+export default BookInfoList;

@@ -9,6 +9,19 @@ interface inputProps {
   placeholder?: string;
 }
 
+/**
+ * Input 컴포넌트
+ *
+ * @param props - Input 컴포넌트의 props
+ * @param props.value - 현재 입력 값
+ * @param props.onChange - 입력 값이 변경될 때 호출되는 이벤트 핸들러
+ * @param props.onSubmit - 엔터 키 입력 시 호출되는 함수
+ * @param props.onFocus - 인풋이 포커스될 때 호출되는 함수
+ * @param props.onBlur - 인풋 포커스가 해제될 때 호출되는 함수
+ * @param props.placeholder - 인풋에 표시할 placeholder 텍스트
+ * @returns
+ */
+
 export function Input({
   value,
   onChange,

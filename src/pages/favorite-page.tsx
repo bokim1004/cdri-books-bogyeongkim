@@ -34,7 +34,7 @@ function FavoritePage() {
         return (
           <Book
             book={book}
-            isOpen={isOpen}
+            isDetailOpen={isOpen}
             isLiked={likedBookList}
             onToggleLike={handleToggleLike}
             onToggleOpen={handleToggleOpen}

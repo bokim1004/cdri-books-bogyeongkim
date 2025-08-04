@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookInfo from "../components/book/book-info";
+import BookInfoList from "../components/book/book-info";
 import BookSearch from "../components/search/book-search";
 
 import Pagination from "../components/common/pagination";
@@ -21,7 +21,7 @@ function SearchPage() {
         onClick={() => setIsModalOpen(false)}
       >
         <BookSearch data={data} />
-        <BookInfo data={data} />
+        <BookInfoList data={data} />
       </div>
       {data?.documents.length > 0 ? (
         <Pagination

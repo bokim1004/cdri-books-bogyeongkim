@@ -10,6 +10,19 @@ interface Props {
   disabled?: boolean;
 }
 
+/**
+ * Button 컴포넌트
+ *
+ * @param props - Button 컴포넌트의 props
+ * @param props.text - 버튼에 표시할 텍스트
+ * @param props.isOpen - 버튼 클릭 시 상태 여부
+ * @param props.onClick - 버튼 클릭 시 호출되는 함수
+ * @param props.variant - 버튼 스타일 타입 ("primary" | "secondary" | "simple")
+ * @param props.className - 추가로 적용할 TailwindCSS 클래스
+ * @param props.disabled - 버튼 비활성화 여부
+ * @returns
+ */
+
 function Button({
   text,
   isOpen,

@@ -1,11 +1,10 @@
-/** 도서 아이템 */
-
 import type { documentType } from "../../types/search";
 
 interface Props {
   book: documentType;
 }
 
+/** 도서 아이템 */
 function BookItem(Props: Props) {
   const { book } = Props;
 

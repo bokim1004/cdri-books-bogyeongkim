@@ -10,7 +10,7 @@ interface BookInfoProps {
   data: searchData;
 }
 
-// 도서 검색 컴포넌트
+/** 도서 검색 컴포넌트 */
 function BookSearch({ data }: BookInfoProps) {
   const {
     setQuery,
@@ -20,6 +20,7 @@ function BookSearch({ data }: BookInfoProps) {
     setDetailInputValue,
     setInputValue,
   } = useSearchStore();
+
   const { addSearchHistory } = useSearchHistoryStore();
 
   const handleSearch = useCallback(() => {

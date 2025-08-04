@@ -4,10 +4,21 @@ interface ModalProps {
   isOpen: boolean;
   onClose?: () => void;
   onSearch?: () => void;
-  title?: string;
   btnText?: string;
   children?: React.ReactNode;
 }
+
+/**
+ * Modal 컴포넌트
+ *
+ * @param props - Modal 컴포넌트의 props
+ * @param props.isOpen - 모달이 열려 있는지 여부
+ * @param props.onClose - 모달을 닫을 때 호출되는 함수
+ * @param props.onSearch - 검색 버튼 클릭 시 호출되는 함수
+ * @param props.btnText - 모달 하단 버튼에 표시할 텍스트
+ * @param props.children - 모달 내부에 표시할 내용컨텐츠
+ * @returns
+ */
 
 function Modal(props: ModalProps) {
   const { isOpen, onClose, onSearch, children, btnText } = props;
