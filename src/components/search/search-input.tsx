@@ -32,6 +32,7 @@ function SearchInput() {
           {searchHistory?.map((term) => {
             return (
               <SearchHistory
+                key={term}
                 term={term}
                 handleDeleteClick={handleDeleteClick}
                 handleHistoryClick={handleHistoryClick}

@@ -13,7 +13,6 @@ function SearchHistory(props: searchHistory) {
 
   return (
     <div
-      key={term}
       className="flex flex-row items-center justify-between cursor-pointer hover:bg-gray-200 "
       onMouseDown={() => handleHistoryClick(term)}
     >
