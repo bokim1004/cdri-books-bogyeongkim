@@ -1,48 +1,27 @@
-import { memo, useCallback, useState } from "react";
-import { useSearchHistoryStore } from "../../store/useSearchHistoryStore";
-import { useSearchStore } from "../../store/useSearchStore";
+import { memo } from "react";
+import { useSearchInput } from "../../hooks/useSearchInput";
 import { Input } from "../common/input";
 import SearchHistory from "./search-history";
 
 // 검색 입력 컴포넌트
 function SearchInput() {
-  const [isFocused, setIsFocused] = useState(false);
-
-  const { setQuery, inputValue, setInputValue, setDetailInputValue } =
-    useSearchStore();
-
-  const { addSearchHistory, removeSearchHistory, searchHistory } =
-    useSearchHistoryStore();
-
-  const handleClick = useCallback(() => {
-    addSearchHistory(inputValue);
-    setQuery(inputValue);
-
-    setIsFocused(false);
-    setDetailInputValue("");
-  }, [inputValue, setQuery, addSearchHistory, setDetailInputValue]);
-
-  const handleHistoryClick = useCallback(
-    (term: string) => {
-      setInputValue(term);
-      setQuery(term);
-    },
-    [setInputValue, setQuery]
-  );
-
-  const handleDeleteClick = useCallback(
-    (term: string) => {
-      removeSearchHistory(term);
-    },
-    [removeSearchHistory]
-  );
+  const {
+    inputValue,
+    setInputValue,
+    isFocused,
+    setIsFocused,
+    searchHistory,
+    handleDeleteClick,
+    handleHistoryClick,
+    handleSubmitClick,
+  } = useSearchInput();
 
   return (
     <div className="flex flex-col w-full max-w-xl mx-auto rounded-[20px]  bg-lightgray overflow-hidden ">
       <Input
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        onSubmit={handleClick}
+        onSubmit={handleSubmitClick}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
         placeholder="검색어를 입력하세요"
