@@ -23,6 +23,7 @@ const fetchBooks = async (query: string, page: number) => {
 /**
  *
  * @param query - 검색어
+ * @param page - 페이지 수
  * query에 따라 도서 검색 API를 호출하여 결과를 반환하는 훅
  */
 
